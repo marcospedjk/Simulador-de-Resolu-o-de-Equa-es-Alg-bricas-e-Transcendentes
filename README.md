@@ -1,0 +1,1 @@
+# Simulador-de-Resolu-o-de-Equa-es-Alg-bricas-e-Transcendentes
