@@ -3,6 +3,7 @@ from Bisseccao import Bisseccao, ler_funcao
 from FalsaPosicao import FalsaPosicao
 from Secante import Secante
 import sympy as sp
+from NewtonRaphson import NewtonRaphson
 
 def main():
     print("=" * 55)
@@ -37,7 +38,7 @@ def main():
         elif opcao == "2":
             FalsaPosicao(f_num, df_num, erro, max_iteracoes)
         elif opcao == "3":
-            print("\nMétodo de Newton-Raphson.")
+            NewtonRaphson(f_num, df_num, erro, max_iteracoes)
         elif opcao == "4":
            Secante(f_num, df_num, erro, max_iteracoes)
         elif opcao == "r":
