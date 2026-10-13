@@ -8,12 +8,22 @@ def FalsaPosicao(f, df, erro, max_iteracoes):
     if raiz_exata:
         return a, 0, 0.0, 0.0
 
-    print("Executando falsa posição...")
+    print("\nExecutando falsa posição...")
     inicio = time.perf_counter()
 
     n = 0
-    aux = (a * fb - b * fa) / (fb - fa)
+    denominador = fb - fa
+
+    # Proteção contra divisão por zero
+    if abs(denominador) < 1e-15:
+        print("\n[Erro]: f(b) - f(a) é zero ou próximo de zero. Não é possível iniciar o método.")
+        return None, n, 0.0, 0.0
+
+    aux = (a * fb - b * fa) / denominador
     faux = f(aux)
+
+    # Guarda a última aproximação 
+    ultima_aux = aux
 
     while (abs(faux) > erro) and (n < max_iteracoes):
         n += 1
@@ -24,7 +34,17 @@ def FalsaPosicao(f, df, erro, max_iteracoes):
             a = aux
             fa = faux
 
-        aux = (a * fb - b * fa) / (fb - fa)
+        denominador = fb - fa
+
+        # Proteção contra divisão por zero
+        if abs(denominador) < 1e-15:
+            print(f"\n[Aviso]: Divisão por zero detectada na iteração {n} (estagnação do método).")
+            print(f"Interrupção antecipada. Última aproximação válida: {ultima_aux:.8f}")
+            aux = ultima_aux
+            break
+
+        ultima_aux = aux
+        aux = (a * fb - b * fa) / denominador
         faux = f(aux)
 
     fim = time.perf_counter()
