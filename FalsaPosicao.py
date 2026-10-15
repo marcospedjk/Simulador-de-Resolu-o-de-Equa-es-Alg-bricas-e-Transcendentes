@@ -60,5 +60,6 @@ def FalsaPosicao(f, df, erro, max_iteracoes):
     print(f"Tempo de execução       : {tempo_ms:.4f} ms")
     print(f"Precisão final |f(raiz)| : {residuo:.4e}")
     print("=" * 45)
-plotar_grafico(f, aux, a, b, "Método da Falsa Posição")
+    plotar_grafico(f, aux, a, b, "Método da Falsa Posição")
     return aux, n, tempo_ms, residuo
+
