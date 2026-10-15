@@ -6,6 +6,7 @@ def Bisseccao(f, df, erro, max_iteracoes):
     a, b, fa, fb, raiz_exata = obter_intervalo_valido(f, df, "Bissecção")
 
     if raiz_exata:
+        plotar_grafico(f, a, a, b, "Método da Bissecção")
         return a, 0, 0.0, 0.0
 
     print("Executando bissecção...")
@@ -37,5 +38,6 @@ def Bisseccao(f, df, erro, max_iteracoes):
     print(f"Tempo de execução       : {tempo_ms:.4f} ms")
     print(f"Precisão final |f(raiz)| : {residuo:.4e}")
     print("=" * 45)
-plotar_grafico(f, aux, a, b, "Método da Bissecção")
+
+    plotar_grafico(f, aux, a, b, "Método da Bissecção")
     return aux, n, tempo_ms, residuo
