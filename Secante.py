@@ -1,6 +1,6 @@
 import time
 import numpy as np
-
+from graficos import plotar_grafico
 def Secante(f, df, erro, max_iteracoes):
     print("\n" + "-" * 40)
     print("MÉTODO DA SECANTE: ESTIMATIVAS INICIAIS")
@@ -131,5 +131,5 @@ def Secante(f, df, erro, max_iteracoes):
     print(f"Tempo de execução       : {tempo_ms:.4f} ms")
     print(f"Precisão final |f(raiz)| : {residuo:.4e}")
     print("=" * 45)
-
+plotar_grafico(f, x1, nome_metodo="Método da Secante")
     return x1, n, tempo_ms, residuo
