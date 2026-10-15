@@ -10,6 +10,9 @@ def Bisseccao(f, df, erro, max_iteracoes):
         return a, 0, 0.0, 0.0
 
     print("Executando bissecção...")
+
+    a_orig = a
+    b_orig = b
     inicio = time.perf_counter()
 
     aux = (a + b) / 2.0
@@ -39,5 +42,5 @@ def Bisseccao(f, df, erro, max_iteracoes):
     print(f"Precisão final |f(raiz)| : {residuo:.4e}")
     print("=" * 45)
 
-    plotar_grafico(f, aux, a, b, "Método da Bissecção")
+    plotar_grafico(f, aux, a=a_orig, b=b_orig, nome_metodo="Método da Bissecção")
     return aux, n, tempo_ms, residuo
