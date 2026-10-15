@@ -1,57 +1,6 @@
-import numpy as np
-from graficos import plotar_grafico
-
-def validar_condicoes_newton(f, df, d2f, a, b, num_pontos=100):
-    pontos = np.linspace(a, b, num_pontos)
-
-    try:
-        valores_f = f(pontos)
-        valores_df = df(pontos)
-        valores_d2f = d2f(pontos)
-
-        if (
-            np.any(np.isnan(valores_f))
-            or np.any(np.isinf(valores_f))
-            or np.any(np.isnan(valores_df))
-            or np.any(np.isinf(valores_df))
-        ):
-            print(
-                "[Erro]: A função ou sua derivada possui descontinuidade/assíntota no intervalo."
-            )
-            return False, None
-
-        if f(a) * f(b) >= 0:
-            print("[Erro]: f(a) * f(b) >= 0. Não há garantia de raiz.")
-            return False, None
-
-        df_pos = np.all(valores_df > 0)
-        df_neg = np.all(valores_df < 0)
-        if not (df_pos or df_neg):
-            print(
-                "[Erro]: f'(x) troca de sinal ou se anula. Não há garantia de raiz única ou tangente horizontal."
-            )
-            return False, None
-
-        d2f_a = d2f(a)
-        d2f_b = d2f(b)
-
-        if f(a) * d2f_a > 0:
-            x0 = a
-        elif f(b) * d2f_b > 0:
-            x0 = b
-        else:
-            x0 = (a + b) / 2.0
-
-        return True, x0
-
-    except Exception as e:
-        print(f"[Erro numérico]: {e}")
-        return False, None
-
-
 import time
 import numpy as np
-
+from graficos import plotar_grafico
 
 def NewtonRaphson(f, df, erro, max_iteracoes):
     print("\n" + "-" * 40)
@@ -73,6 +22,7 @@ def NewtonRaphson(f, df, erro, max_iteracoes):
 
     if abs(fx0) <= erro:
         print(f"\nO ponto inicial já satisfaz a tolerância: x0 = {x0:.8f}")
+        plotar_grafico(f, x0, nome_metodo="Método de Newton-Raphson")
         return x0, 0, 0.0, abs(fx0)
 
     print("\nA executar o método de Newton-Raphson...")
@@ -133,5 +83,6 @@ def NewtonRaphson(f, df, erro, max_iteracoes):
     if not sucesso and k >= max_iteracoes:
         print("[Aviso]: O limite máximo de iterações foi atingido sem atingir a precisão.")
     print("=" * 45)
+
     plotar_grafico(f, xk, nome_metodo="Método de Newton-Raphson")
     return xk, k, tempo_ms, residuo
