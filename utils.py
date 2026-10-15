@@ -10,7 +10,19 @@ from sympy.parsing.sympy_parser import (
 
 transformacoes = standard_transformations + (implicit_multiplication_application, convert_xor)
 x = symbols("x")
-contexto_local = {"e": sp.E, "E": sp.E}
+
+# Contexto expandido para reconhecer funções trigonométricas, exponenciais e logaritmos do professor
+contexto_local = {
+    "e": sp.E,
+    "E": sp.E,
+    "cos": sp.cos,
+    "sin": sp.sin,
+    "tan": sp.tan,
+    "exp": sp.exp,
+    "log": sp.log,
+    "ln": sp.log,
+    "sqrt": sp.sqrt
+}
 
 
 def ler_funcao():
