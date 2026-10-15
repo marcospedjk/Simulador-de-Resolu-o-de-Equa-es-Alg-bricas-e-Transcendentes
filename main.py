@@ -1,8 +1,9 @@
 import time
-from Bisseccao import Bisseccao, ler_funcao
+import sympy as sp
+from utils import ler_funcao
+from Bisseccao import Bisseccao
 from FalsaPosicao import FalsaPosicao
 from Secante import Secante
-import sympy as sp
 from NewtonRaphson import NewtonRaphson
 
 def main():
@@ -18,8 +19,8 @@ def main():
         print("\n" + "=" * 40)
         print("PAINEL DE CONTROLE / MENU PRINCIPAL")
         print("=" * 40)
-        print(f"Função atual      : {expr_simb}")
-        print(f"Precisão (ϵ)      : {erro}")
+        print(f"Função atual       : {expr_simb}")
+        print(f"Precisão (ϵ)       : {erro}")
         print(f"Máximo de iterações: {max_iteracoes}")
         print("-" * 40)
         print("[1] Bissecção")
@@ -40,7 +41,7 @@ def main():
         elif opcao == "3":
             NewtonRaphson(f_num, df_num, erro, max_iteracoes)
         elif opcao == "4":
-           Secante(f_num, df_num, erro, max_iteracoes)
+            Secante(f_num, df_num, erro, max_iteracoes)
         elif opcao == "r":
             try:
                 novo_erro = float(sp.sympify(input(f"Nova tolerância ϵ (atual = {erro}): ")))
@@ -58,7 +59,7 @@ def main():
         else:
             print("\nOpção inválida! Digite 1, 2, 3, 4, R, F ou 5.")
 
-        input("Pressione enter para continuar")
+        input("\nPressione enter para continuar...")
 
 
 if __name__ == "__main__":
