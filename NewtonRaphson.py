@@ -1,5 +1,5 @@
 import numpy as np
-
+from graficos import plotar_grafico
 
 def validar_condicoes_newton(f, df, d2f, a, b, num_pontos=100):
     pontos = np.linspace(a, b, num_pontos)
@@ -133,5 +133,5 @@ def NewtonRaphson(f, df, erro, max_iteracoes):
     if not sucesso and k >= max_iteracoes:
         print("[Aviso]: O limite máximo de iterações foi atingido sem atingir a precisão.")
     print("=" * 45)
-
+    plotar_grafico(f, xk, nome_metodo="Método de Newton-Raphson")
     return xk, k, tempo_ms, residuo
