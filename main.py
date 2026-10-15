@@ -5,6 +5,8 @@ from FalsaPosicao import FalsaPosicao
 from Secante import Secante
 from NewtonRaphson import NewtonRaphson
 
+
+#Esta função é somente para criar a interface, ou seja, ela é responsável pelo I/O (input e output)
 def main():
     print("=" * 55)
     print(" SIMULADOR DE ZEROS DE EQUAÇÕES TRANSCENDENTES ")

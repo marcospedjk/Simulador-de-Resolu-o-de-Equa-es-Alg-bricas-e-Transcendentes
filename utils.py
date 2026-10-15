@@ -22,7 +22,7 @@ contexto_local = {
     "sqrt": sp.sqrt
 }
 
-
+#Obtenção e validação da função que o usuário fornece
 def ler_funcao():
     while True:
         try:
@@ -38,7 +38,7 @@ def ler_funcao():
         except Exception as erro:
             print(f"[Erro ao interpretar a função]: {erro}. Tente novamente.")
 
-
+#Verificação de derivada com sinal constante (critério para definir se há exatamente uma raiz)
 def derivada_tem_sinal_constante(df, a, b, num_pontos=100):
     try:
         pontos = np.linspace(a, b, num_pontos)
@@ -57,7 +57,7 @@ def derivada_tem_sinal_constante(df, a, b, num_pontos=100):
     except Exception:
         return False
 
-
+#Obtenção e validação do intervalo [a, b]
 def obter_intervalo_valido(f, df, nome_metodo):
     """Função unificada para ler limites [a, b] e validar o Teorema de Bolzano."""
     print("\n" + "-" * 40)

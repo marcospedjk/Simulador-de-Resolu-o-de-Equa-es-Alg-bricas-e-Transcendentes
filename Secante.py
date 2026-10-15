@@ -7,6 +7,7 @@ def Secante(f, df, erro, max_iteracoes):
     print("MÉTODO DA SECANTE: ESTIMATIVAS INICIAIS")
     print("-" * 40)
 
+    #Obtenção e validação x0 e x1
     while True:
         try:
             x0 = float(input("Digite a primeira estimativa inicial (x0): "))
@@ -16,6 +17,7 @@ def Secante(f, df, erro, max_iteracoes):
             print("Entrada inválida. Digite valores numéricos.")
 
     print("\nExecutando o método da secante...")
+    #Início contador de performance
     inicio = time.perf_counter()
 
     n = 0
@@ -23,21 +25,25 @@ def Secante(f, df, erro, max_iteracoes):
     fx1 = f(x1)
     ultima_x = x1
 
+    #Laço enquanto não atingir a quantidade máxima de iterações (previamente definida como 100)
     while n < max_iteracoes:
         denominador = fx1 - fx0
 
+        #Verificação se a expressão que vai no denominador do método é aproximadamente zero. Para evitar overflow e/ou indeterminação
         if abs(denominador) < 1e-15:
             print(f"\n[Aviso]: Divisão por zero detectada na iteração {n+1} (f(x1) - f(x0) é zero).")
             print(f"Interrupção antecipada. Última aproximação válida: {ultima_x:.8f}")
             x1 = ultima_x
             break
 
+        #Aplicação do método da secante
         x2 = x1 - (fx1 * (x1 - x0)) / denominador
         fx2 = f(x2)
 
         n += 1
         ultima_x = x2
 
+        #Verificação se atingiu a precisão esperada ou se o loop continua
         if abs(fx2) < erro or abs(x2 - x1) < erro:
             x1 = x2
             break
@@ -46,7 +52,7 @@ def Secante(f, df, erro, max_iteracoes):
         fx0 = fx1
         x1 = x2
         fx1 = fx2
-
+    #Fim do contador
     fim = time.perf_counter()
     tempo_ms = (fim - inicio) * 1000
     residuo = abs(f(x1))
@@ -60,5 +66,6 @@ def Secante(f, df, erro, max_iteracoes):
     print(f"Precisão final |f(raiz)| : {residuo:.4e}")
     print("=" * 45)
 
+    #Plotagem do gráfico da função
     plotar_grafico(f, x1, nome_metodo="Método da Secante")
     return x1, n, tempo_ms, residuo

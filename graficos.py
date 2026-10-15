@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-
+#Plotagem do gráfico das funções
 def plotar_grafico(f, raiz, a=None, b=None, nome_metodo=""):
     """Plota a função f(x), destaca a raiz encontrada e opcionalmente o intervalo [a, b]."""
     try:
