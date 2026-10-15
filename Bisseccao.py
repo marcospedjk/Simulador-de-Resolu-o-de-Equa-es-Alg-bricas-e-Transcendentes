@@ -1,6 +1,6 @@
 import time
 from utils import obter_intervalo_valido
-
+from graficos import plotar_grafico
 
 def Bisseccao(f, df, erro, max_iteracoes):
     a, b, fa, fb, raiz_exata = obter_intervalo_valido(f, df, "Bissecção")
