@@ -1,4 +1,3 @@
-import time
 import sympy as sp
 from utils import ler_funcao
 from Bisseccao import Bisseccao
@@ -54,7 +53,7 @@ def main():
         elif opcao == "f":
             expr_simb, f_num, df_num = ler_funcao()
         elif opcao == "5":
-            print("\nEncerrando o programa. Bom trabalho!")
+            print("\nEncerrando o programa.")
             break
         else:
             print("\nOpção inválida! Digite 1, 2, 3, 4, R, F ou 5.")
